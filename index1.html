@@ -1,0 +1,690 @@
+<!-- <span style="color:red; font-size:70%; vertical-align: 25%;">new</span>-->
+<!-- Desarrollado por Vernetit -->
+ <html lang="es"> 
+<html>
+<head>
+    <meta charset="UTF-8">
+	
+	<title>EMVM - Entrenador multiple de velocidad mental</title>
+  <!--  <script src="js/datos.js"></script> -->
+  <!--   <script src="js/jquery.min.js" type="text/javascript"></script>  -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+
+<!--<script src="js/jquery.min.js" type="text/javascript"></script> -->
+	<script src="js/jquery.cookie.js" type="text/javascript"></script> 
+    <!--<script type="text/javascript" src="jquery.msgbox.js"></script>-->
+   <!-- <script src="js/jquery.dialog.min.js"></script> -->
+   <!-- < <script type='text/javascript' src='js/jquery.simplemodal.js'></script> -->
+	<script src="js/underscore-min.js" type="text/javascript"></script> 
+  <!--  <script src="js/maze.js" type="text/javascript"></script> -->
+	<script src="js/em2.js" type="text/javascript"></script> 
+   <!-- <script src="js/Chart.js"></script> -->
+    <link rel="shortcut icon" href="./foco.gif">
+    <meta description="Competición mental">
+    <meta name="keywords" content="entrenamiento mental, velocidad mental, entrenar la mente">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" id="theme" type="text/css" />
+
+
+<!-- Contact Form CSS files -->
+<!-- <link type='text/css' href='css/basic.css' rel='stylesheet' media='screen' /> -->
+<!-- <link rel="stylesheet" href="css/jquery.dialog.min.css"/> -->
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45359665-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+    var theme = location.href.split(/\?/)[1];
+    theme = theme || 'metro';
+    $("#theme").attr('href', "themes/"+ theme +"/css/jquery.msgbox.css");
+    
+    $ (document) .ready(function(){
+        var produce = function () {
+            $("pre.code").each (function(){
+                eval ($(this).text());
+            });
+        }
+        
+        $("#themeswitcher").val(theme);
+        
+        produce();
+        
+        $("#themeswitcher").change(function(){
+            location.href = location.href.split(/\?/)[0] + '?' + $(this).val();
+        });
+    });
+</script>
+
+</head>
+<body>
+     <a name="top">
+	<div id="navegar" style="font-size: 90%;">
+        <div id="controles1" style="float: left; display:inline;">
+		<input type="button" value="play" id="boton-comenzar" style="visibility: hidden;"> 
+        
+
+         cantidad  <input type="text" style="width: 50px" value="30" id="cantPasadas"> </div>
+        </div>
+        <div id="controlesMR">
+              Memoria Rápida: &nbsp;
+              <span id="abrirMRDiv"> 
+                <select id="abrirMR1">
+                  <option value="0"  selected>Nuevo</option>
+                </select>
+            </span>
+
+            Fast Mode <input type="checkbox" id="fastMode" >
+            <input type="button" name="go" value="Go!" id="goMR">
+            <input type="button" name="check" value="check" id="checkMR"> 
+            <span id="controlesMR1">
+                <input type="button" name="next" value="next" id="nextMR"> 
+                <input type="button" name="verification" value="verification" id="verifyMR"> 
+            </span>
+            
+            <input type="button" value="config" id="boton-conf"> <div style="visibility: hidden;"> 
+            <span id="contadorMR"></span>
+        </div> 
+        <div  id="controles2" style="float: left;  display: none;">
+           
+            <a href="#" id="a0">logic</a> <input type="checkbox" id="ch0" checked> |
+            <a href="#" id="a1">math</a> <input type="checkbox" id="ch1" checked> |
+            <a href="#" id="a2">periferica</a> <input type="checkbox" id="ch2" checked> |
+            <a href="#" id="a3">bin</a> <input type="checkbox" id="ch3" checked> | 
+            <a href="#" id="a4">sinestesia</a> <input type="checkbox" id="ch4" checked>
+                             <select id="sinestesiaOpcion">
+                              <option value="0"  selected>A</option>
+                              <option value="1">B</option>
+                              <option value="2">AB</option>
+                            </select>|
+            <a href="#" id="a5">reaccion</a> <input type="checkbox" id="ch5" checked> |
+    		<a href="#" id="a6">speed reading</a> <input type="checkbox" id="ch6"  checked> | 
+            <a href="#" id="a7">memoria</a> <input type="checkbox" id="ch7"  checked> 
+            <span id="memoriaDisciplinas">(
+
+                            <a href="#" style="color: #000000;" id="aa0">casilleros</a><input type = "checkbox"  id = "mm0" checked> 
+                            <a href="#" style="color: #000000;" id="aa1">cartas</a> <input type = "checkbox"  id = "mm1"  checked> 
+                            <a href="#" style="color: #000000;" id="aa2"> PAO</a> <input type = "checkbox" id = "mm2"  checked> 
+                            <a href="#" style="color: #000000;" id="aa3"> numeros</a> <input type = "checkbox"  id = "mm3"  checked> 
+                            <a href="#" style="color: #000000;" id="aa4"> figuras</a> <input type = "checkbox"  id = "mm4"  checked> 
+                            <a href="#" style="color: #000000;" id="aa5">matrices</a> <input type = "checkbox"  id = "mm5"  checked> 
+                            <select id="dimensionMatriz">
+                              <option value="0">3x2</option>
+                              <option value="1" selected>3x4</option>
+                              <option value="2">4x2</option>
+                              <option value="3">4x4</option>
+                              <option value="4">4x5</option>
+                            </select>
+                            <a href="#" style="color: #000000;" id="aa6">Nombres y caras</a> <input type = "checkbox"  id = "mm6"  checked> 
+                            <a href="#" style="color: #000000;" id="aa7">f. Abstractas</a> <input type = "checkbox"  id = "mm7"  checked> 
+                            <a href="#" style="color: #000000;" id="aa8"> fechas</a><input type = "checkbox"  id = "mm8"  checked> 
+                            <a href="#" style="color: #000000;" id="aa9">países</a> <input type = "checkbox"  id = "mm9"  checked> 
+                            <a href="#" style="color: #000000;" id="aa10"> símbolos </a><input type = "checkbox"  id = "mm10"  checked>
+                            <a href="#" style="color: #000000;" id="aa11"> palabras </a><input type = "checkbox"  id = "mm11"  checked>
+                            <a href="#" style="color: #000000;" id="aa12"> Mix </a><input type = "checkbox"  id = "mm12"  checked>|
+                            constant time<input type="checkbox" id="constantTime"> 
+                            Fast Mode<input type="checkbox"  id="fastMode1" checked> noTime<input type="checkbox"  id= "noTime"><a href="#" id="all1">all</a>/<a href="#" id="random1">rand</a> |
+
+            )</span> 
+
+            |
+            <a href="#" id="a8">ojos</a> <input type="checkbox" id="ch8" checked> |
+            <a href="#" id="a9">Sum Flash</a><input type="checkbox" id="ch9" checked> |
+            <a href="#" id="a10">Calendar</a><input type="checkbox" id="ch10" checked> |
+            <a href="#" id="a11">Music(clef)</a><input type="checkbox" id="ch11" checked> |
+            <a href="#" id="a12">Silogismos</a><input type="checkbox" id="ch12" checked> 
+            <select id="cantidadSilogismos">
+                <option value="2"  selected>2</option>
+                <option value="3"  selected>3</option> 
+              <option value="4"  selected>4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+            </select> |
+            <a href="#" id="a13">Hectoc</a> <input type="checkbox" id="ch13" checked> |
+            <a href="#" id="a14">Laberinto</a> <input type="checkbox" id="ch14" checked> |
+            <a href="#" id="a15">MathLogic</a> <input type="checkbox" id="ch15" checked> |
+            <a href="#" id="a16">EmoLogic</a> <input type="checkbox" id="ch16" checked> |
+            <a href="#" id="a17">Suma10²</a> <input type="checkbox" id="ch17" checked> |
+            <a href="#" id="a18">Multiplicación</a> <input type="checkbox" id="ch18" checked> cifras: 
+            <select id="cifrasMultiplicacion">
+             <option value="2"  selected>2</option>
+             <option value="3"  selected>3</option>
+              <option value="4"  selected>4</option>
+              <option value="5"  selected>5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select> |
+            <a href="#" id="all">all</a>/<a href="#" id="random">rand</a> |
+            <a href="#" id="help">help</a> <input type = "checkbox"  id = "helpMode" checked> | 
+            <a href="http://lecturarapida-1090.appspot.com/index.php">Lee la web con Lectura rápida</a>
+        </div>
+        <div id="controles3" style="float: right; display: inline; display: none;">
+		<span style="zoom: 150%;">pasadas: <span id="pasadas"></span> |
+		ok: <span id="ok"></span> | 
+		no: <span id="no"></span> | </span>
+        </div>
+	</div>
+	<div style="clear:both;"/>
+      <div id="div-configurar">
+        <form id="myForm">
+            <table border="0" width="1200px" height="600px">
+                <tr>
+                    <td width="100" style="vertical-align: top;">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="button" value="-" id="restaDigitosMR">
+                                <input tye="text" style="width: 40px;" value="6" id="digitosMR">
+                                <input type="button" value="+" id="sumaDigitosMR"> 
+                                digitos | 
+                                <select id="tipoMR">
+                                  <option value="0" selected>dec</option>
+                                  <option value="1">bin</option>
+                                  <option value="2">letras</option>
+                                </select> | 
+                                 <input tye="text" style="width: 50px;" value="500" id="tiempoMR"> ms | 
+                                Abrir
+                                <span id="abrirMRDiv"> 
+                                    <select id="abrirMR">
+                                      <option value="0"  selected>Nuevo</option>
+                                    </select>
+                                </span>
+                                 |
+                            </td>
+                            <td>
+                                 <input type="button" value="guardar" id="guardarMR"> <span id="espacioMR">4096</span>B <br>
+                                 <input type="button" value="borrar" id="borrarMR"> <br> 
+                                 <input type="button" value="borrar todo" id="borrarTodoMR">|
+                            </td>
+                            <td>
+                                <input type="button" value="Unselect All" id="unselectMR"><br>
+                                <input tye="text" style="width: 86px;" value="" id="seleccionMR"><br>
+                                siguiente: <input tye="text" style="width: 28px;" value="" id="siguienteMR">
+                            </td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><input type="button" value="+" id="addMR"></td>
+                                        <td><input type="button" value="▲" id="upMR"></td>
+                                        <td><input type="button" value="-" id="restMR"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" value="◀"  id="leftMR"></td>
+                                        <td><input tye="text" style="width: 29px; text-align: center;" value="5" id="movimientoMR"></td>
+                                        <td><input type="button" value="▶"  id="rightMR"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span id="currentMR"></span></td>
+                                        <td><input type="button" value="▼"  id="downMR"></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </table>
+                                
+                            </td>
+                            <td>
+                                <div style="zoom: 0.8;">
+                                    <table>
+                                           <tr>
+                                                <td>
+                                                    000 <input type="text" style="width: 50px" id="binMR0"> <br>
+                                                    001 <input type="text" style="width: 50px" id="binMR1"> <br>
+                                                    010 <input type="text" style="width: 50px" id="binMR2"> <br>
+                                                    011 <input type="text" style="width: 50px" id="binMR3"> <br>
+                                                </td>
+                                                <td>
+                                                    100 <input type="text" style="width: 50px" id="binMR4"> <br>
+                                                    101 <input type="text" style="width: 50px" id="binMR5"> <br>
+                                                    110 <input type="text" style="width: 50px" id="binMR6"> <br>
+                                                    111 <input type="text" style="width: 50px" id="binMR7"> <br>
+                                                </td>
+                                           </tr>     
+                                    </table>    
+                                </div>
+                            </td>
+                            <td>
+                                 <input type="button" value="guardar" id="guardarMRBin">
+                            </td>
+                        </tr>        
+                    </table>
+                    <br>
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="element">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">Memoria</td>
+                    <td> 
+                        tiempo para responder: <input type="text" style="width: 50px" value="5000" id="tt7"> ms  
+                         <b> | </b> aparece uno de cada aprox: <input type="text" style="width: 40px" value="0" id="unoDeCada">  ejercicios 
+                         <b> | </b> respuesta time:  <input type="text" style="width: 50px" value="180000" id="tiempoRespuestaMemoria">                  
+                        <b> | </b> tiempo de preparación  <input type="text" style="width: 40px" value="3" id="tiempoPreparacion">  segundos (Avanzado: es el tiempo que carga las imagenes) 
+                        <br><br>
+                        casilleros time <input type="text" style="width: 50px" value="1750" id="t7"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria0"> 
+                        <br>
+                        cartas fast time <input type="text" style="width: 50px" value="5000" id="tm1"> ms 
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria1">  
+                        <br>
+                        PAO fast time <input type="text" style="width: 50px" value="2700" id="tm2"> ms 
+                        cantidad elementos: <input type="text" style="width: 40px" value="6" id="cMemoria2">  
+                        <br>
+                        numeros fast time <input type="text" style="width: 50px" value="1750" id="tm3"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria3"> 
+                        <br>
+                        figuras fast time <input type="text" style="width: 50px" value="1750" id="tm4"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria4"> 
+                        <br>
+                        Matrices fast time <input type="text" style="width: 50px" value="5000" id="tm5"> ms                       
+                        cantidad elementos: <input type="text" style="width: 40px" value="6" id="cMemoria5"> 
+                        <br>
+                        Nombres y caras fast time <input type="text" style="width: 50px" value="3350" id="tm6"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria6"> 
+                        <br>
+                        Figuras abstractas fast time <input type="text" style="width: 50px" value="5000" id="tm7"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria7"> 
+                        <br>
+                        Fechas fast time<input type="text" style="width: 50px" value="6000" id="tm8"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="6" id="cMemoria8">
+                        <br>
+                        Paises fast time <input type="text" style="width: 50px" value="800" id="tm9"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria9">  
+                        <br>
+                        Símbolos fast time <input type="text" style="width: 50px" value="2350" id="tm10"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria10">  
+                        <br>
+                        Palabras fast time <input type="text" style="width: 50px" value="1750" id="tm11"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria11">  
+                        <br>
+                        Mix fast time constante <input type="checkbox" id="constantMixTime">  
+                        Mix fast time <input type="text" style="width: 50px" value="5000" id="tm12"> ms  
+                        cantidad elementos: <input type="text" style="width: 40px" value="10" id="cMemoria12">  
+                    </td>
+                </tr> 
+                <tr  style="display: none;">
+                    <td width="100">Logica</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="1500" id="t0"> ms. <!-- 1500 4000 -->
+                        responder <input type="text" style="width: 50px" value="4000" id="tt0"> ms |
+                        modo facil <input type="checkbox" id="facilLogica"> (proposiciones mas cortas ) 
+                    </td>
+                </tr>
+                <tr  style="display: none;">
+                    <td width="100">aritmetica</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="1000" id="t1"> ms.  
+                        responder <input type="text" style="width: 50px" value="2000" id="tt1"> ms  
+                        <b> | </b> 
+                        suma min: <input type="text" style="width: 40px" value="1" id="sumaMin"> 
+                        suma max: <input type="text" style="width: 40px" value="20" id="sumaMax">
+                        resta min: <input type="text" style="width: 40px" value="1" id="restaMin"> 
+                        resta max: <input type="text" style="width: 40px" value="10" id="restaMax">
+                        multi min: <input type="text" style="width: 40px" value="2" id="multiMin">
+                        multi max: <input type="text" style="width: 40px" value="10" id="multiMax">
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">periferica</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="700" id="t2"> ms.  
+                        responder <input type="text" style="width: 50px" value="2000" id="tt2"> ms 
+                        <b> | </b> ancho x: <input type="text" style="width: 40px" value="700" id="periX"> 
+                        largo eje Y en reglones &#60;br:&#62; <input type="text" style="width: 40px" value="10" id="periY">
+                        
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">binarios</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="500" id="t3"> ms.
+                        responder <input type="text" style="width: 50px" value="1000" id="tt3"> ms 
+                       <b> | </b> cant. x: <input type="text" style="width: 40px" value="5" id="binX"> 
+                        cant. y: <input type="text" style="width: 40px" value="5" id="binY">  
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">sinestesia</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="500" id="t4"> ms.  
+                        responder <input type="text" style="width: 50px" value="1500" id="tt4"> ms 
+                    </td>
+                </tr>
+                 <tr style="display: none;">
+                    <td width="100">reaccion</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="500" id="t5"> ms.
+                        responder <input type="text" style="width: 50px" value="2000" id="tt5"> ms | 
+                        all Reactions (memes+emoticons+girl face deprecated)  <input type="checkbox" id="allReaction" disabled="disabled"> 
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">speed reader</td>
+                    <td> 
+                        mostrar<input type="text" style="width: 50px" value="600" id="t6">ms.
+                        responder  <input type="text" style="width: 50px" value="2000" id="tt6"> ms   
+                        <b> | </b> espacio: <input type="text" style="width: 40px" value="180" id="espacios4"> 
+
+                    </td>
+                </tr>
+                 <tr style="display: none;">
+                    <td width="100">Ojos</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="3000" id="t8"> ms.
+                        responder <input type="text" style="width: 50px" value="1000" id="tt8"> ms 
+                    </td>
+                </tr>
+                 <tr style="display: none;">
+                    <td width="100">Sum Flash</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="500" id="t9"> ms  
+                        responder <input type="text" style="width: 50px" value="1000" id="tt9"> ms 
+                        | cant pasadas  <input type="text" style="width: 50px" value="5" id="pasadasSumFlash">
+                        | numero min <input type="text" style="width: 50px" value="1" id="minSumFlash"> 
+                        max <input type="text" style="width: 50px" value="9" id="maxSumFlash"> 
+
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">Calendario mental <br> 1900-2099</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="59000" id="t10"> ms  
+                        responder <input type="text" style="width: 50px" value="1000" id="tt10"> ms 
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">Musica: Lectura de claves</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="9000" id="t11"> ms  
+                        responder <input type="text" style="width: 50px" value="1000" id="tt11"> ms |
+                        <!-- lineas adicionales  <input type="checkbox" id="lineasAdicionales" checked>  -->
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">Silogismos</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="119000" id="t12"> ms  
+                        responder <input type="text" style="width: 50px" value="1000" id="tt12"> ms 
+                        <br>
+                        Proposiciones: <input type="text" style="width: 50px" value="4" id="cantProposiciones"> |
+                        invertir prop. <input type="checkbox" id="invertirProposiciones" checked>  
+                        desordenar prop. <input type="checkbox" id="desordenarProposiciones" checked> 
+                    </td>
+                </tr>
+                 <tr style="display: none;">
+                    <td width="100">Hectoc</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="59000" id="t13"> ms  
+                        responder <input type="text" style="width: 50px" value="1000" id="tt13"> ms 
+                    </td>
+                </tr>
+                 <tr style="display: none;">
+                    <td width="100">Laberinto</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="59000" id="t14"> ms  
+                        responder <input type="text" style="width: 50px" value="1000" id="tt14"> ms 
+                        <br>
+                        <form name="controls" id="myForm1">
+                            Ancho: <input id="width" size="10" value="10" type="text"> 
+                            Alto: <input id="height" size="10" value="10" type="text">
+                            <br>
+                            <input id="easy" name="level" value="0" type="radio">Facil          
+                            <input checked="checked" id="medium" name="level" value="1" type="radio">Medio
+                            <input id="hard" name="level" value="2" type="radio">Dificil
+                         </form><br>
+                         zoom:  <input id="zoomLaberinto" size="10" value="0.5" type="text">
+
+                    </td>
+                </tr>
+                 <tr style="display: none;">
+                    <td width="100">MateLogica </td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="180000" id="t15"> ms. 
+                        responder <input type="text" style="width: 50px" value="4000" id="tt15"> ms |
+                         <b> | </b> 
+                        suma min: <input type="text" style="width: 40px" value="1" id="sumaMinL"> 
+                        suma max: <input type="text" style="width: 40px" value="20" id="sumaMaxL">
+                        resta min: <input type="text" style="width: 40px" value="1" id="restaMinL"> 
+                        resta max: <input type="text" style="width: 40px" value="10" id="restaMaxL">
+                        multi min: <input type="text" style="width: 40px" value="2" id="multiMinL">
+                        multi max: <input type="text" style="width: 40px" value="10" id="multiMaxL">
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">EmoLogica </td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="180000" id="t16"> ms. 
+                        responder <input type="text" style="width: 50px" value="4000" id="tt16"> ms 
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td width="100">Suma10²</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="180000" id="t17"> ms. 
+                        responder <input type="text" style="width: 50px" value="4000" id="tt17"> ms 
+                    </td>
+                </tr>
+                 <tr style="display: none;">
+                    <td width="100">Multiplicación</td>
+                    <td> 
+                        mostrar <input type="text" style="width: 50px" value="600000" id="t18"> ms. 
+                        responder <input type="text" style="width: 50px" value="4000" id="tt18"> ms |
+                    </td>
+                </tr>
+            
+            </table>
+            <input type="button" value="OK" id="boton-guardar"> <input type="reset" value="reset">
+        </form>
+        <br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <div id="div-help">
+        
+
+
+           
+
+        
+
+            
+            
+        
+
+        <br><br>
+
+       
+
+      <!--  <div style="filter:alpha(opacity=1); opacity:0.01;">
+
+<img src="./emociones/alertness.gif" width="30px"><img src="./emociones/amazement.gif" width="30px"><img src="./emociones/amusement.gif" width="30px"><img src="./emociones/anger.gif" width="30px"><img src="./emociones/anxiety.gif" width="30px"><img src="./emociones/aversion.gif" width="30px"><img src="./emociones/betrayal.gif" width="30px"><img src="./emociones/caged animal.gif" width="30px"><img src="./emociones/concern.gif" width="30px"><img src="./emociones/cruelty.gif" width="30px"><img src="./emociones/dejection.gif" width="30px"><img src="./emociones/desapointment.gif" width="30px"><img src="./emociones/desden.gif" width="30px"><img src="./emociones/desperation.gif" width="30px"><img src="./emociones/devastation.gif" width="30px"><img src="./emociones/disgust.gif" width="30px"><img src="./emociones/eww.gif" width="30px"><img src="./emociones/faint hope.gif" width="30px"><img src="./emociones/fear.gif" width="30px"><img src="./emociones/grief.gif" width="30px"><img src="./emociones/horror.gif" width="30px"><img src="./emociones/indignation.gif" width="30px"><img src="./emociones/joy.gif" width="30px"><img src="./emociones/laughter.gif" width="30px"><img src="./emociones/melancholy.gif" width="30px"><img src="./emociones/outrage.gif" width="30px"><img src="./emociones/pain emphaty.gif" width="30px"><img src="./emociones/rage.gif" width="30px"><img src="./emociones/revulsion.gif" width="30px"><img src="./emociones/sadness.gif" width="30px"><img src="./emociones/satisfaction.gif" width="30px"><img src="./emociones/spooked.gif" width="30px"><img src="./emociones/sterness.gif" width="30px"><img src="./emociones/surprise.gif" width="30px"><img src="./emociones/terror.gif" width="30px"><img src="./emociones/what.gif" width="30px"><img src="./emociones/wonder.gif" width="30px"><img src="./emociones/you ate it.gif" width="30px"><img src="./emociones/shock.gif" width="30px">
+ 
+ <img src="./nor.png" width="30px">    <img src="./smash.gif" width="30px">    <img src="./xor.png" width="30px">    <img src="./wedge.gif" width="30px">  <img src="./nand.png" width="30px"> 
+
+
+  <img src="./agradecido.png" width="30px"> 
+                 <img src="./asco.png" width="30px"> 
+                 <img src="./canzado.png" width="30px">    
+                 <img src="./determinado.png" width="30px">    
+                 <img src="./emocional.png" width="30px">  
+                 <img src="./fantastico.png" width="30px"> 
+                 <img src="./happy.png" width="30px"> 
+      
+                 <img src="./irritado.png" width="30px">   
+
+            <img src="./lindo.png" width="30px">  
+                 <img src="./mal.png" width="30px">    
+                 
+                 <img src="./nomeimporta.png" width="30px">   
+                
+                 <img src="./orgulloso.png" width="30px">  
+                 <img src="./pensativo.png" width="30px">   
+                
+                 <img src="./relajado.png" width="30px">   
+                 <img src="./reloco.png" width="30px">   
+                 
+                 <img src="./solo.png" width="30px">   
+              
+                 
+               
+                 <img src="./trizte.png" width="30px">  
+                 <img src="./beautifull.png" width="30px">  
+                 <img src="./quehace.png" width="30px">  
+                 <img src="./sobrecargado.png" width="30px">  
+                 <img src="./cool.png" width="30px">  
+                 <img src="./dolorido.png" width="30px">  
+
+                 <img src="./yoqueado.png" width="30px"> 
+                 
+
+                 <img src="a1.png" width="30px"> 
+                 <img src="a2.png" width="30px"> 
+                 <img src="a3.png" width="30px"> 
+                 <img src="a4.png" width="30px"> 
+                 <img src="a5.png" width="30px"> 
+                 <img src="a6.png" width="30px"> 
+
+                 <img src="incluido.gif" width="30px"> 
+                 <img src="noIncluido.png" width="30px"> 
+
+                 <img src="./incomplete.png" width="30px"> 
+                  <img src="./relleved.png" width="30px"> 
+                  <img src="./concerned.png" width="30px"> 
+                  <img src="./tonto.png" width="30px"> 
+                  <img src="./enfermo.png" width="30px"> 
+                  <img src="./confundido.png" width="30px"> 
+                  <img src="./lleno.png" width="30px"> 
+                  <img src="./borracho.png" width="30px"> 
+                  <img src="./fastidio.png" width="30px"> 
+                  <img src="./irritado2.png" width="30px"> 
+                  <img src="./sarcastico.png" width="30px"> 
+                  <img src="./perdido.png" width="30px"> 
+                  <img src="./strong.png" width="30px"> 
+                  <img src="./asustado.png" width="30px"> 
+                  <img src="./divertido.png" width="30px"> 
+                  <img src="./preocupado.png" width="30px"> 
+                  <img src="./realizado.png" width="30px"> 
+                  <img src="./aliviado.png" width="30px"> 
+                  <img src="./aburrido.png" width="30px"> 
+                  <img src="./amado.png" width="30px"> 
+                  <img src="./perplejo.png" width="30px"> 
+                  <img src="./sorry.png" width="30px"> 
+                  <img src="./hot.png" width="30px"> 
+                  <img src="./down.png" width="30px"> 
+                  <img src="./nostalgico.png" width="30px"> 
+                  <img src="./inspirado.png" width="30px"> 
+                  <img src="./exitado.png" width="30px"> 
+                  <img src="./vendecido.png" width="30px"> 
+
+                 <br>
+
+
+<img src="./meme/abrazo.png" width="30px"><img src="./meme/alamierda.gif" width="30px"><img src="./meme/aterrado.gif" width="30px"><img src="./meme/bean.jpg" width="30px"><img src="./meme/blah.gif" width="30px"><img src="./meme/bueno.gif" width="30px"><img src="./meme/cerealguy_cuspe.gif" width="30px"><img src="./meme/challenge-acepted.gif" width="30px"><img src="./meme/cry.gif" width="30px"><img src="./meme/diario.png" width="30px"><img src="./meme/dig.png" width="30px"><img src="./meme/eeeeyyyinvertido.png" width="30px"><img src="./meme/ever.gif" width="30px"><img src="./meme/exito.png" width="30px"><img src="./meme/father_serius.gif" width="30px"><img src="./meme/friki.gif" width="30px"><img src="./meme/fuck-yea.gif" width="30px"><img src="./meme/genius.png" width="30px"><img src="./meme/hagamos.png" width="30px"><img src="./meme/hahaha.gif" width="30px"><img src="./meme/hero.png" width="30px"><img src="./meme/kidding.gif" width="30px"><img src="./meme/likeasir.gif" width="30px"><img src="./meme/LOL.gif" width="30px"><img src="./meme/mal2.gif" width="30px"><img src="./meme/meh.gif" width="30px"><img src="./meme/mentira.gif" width="30px"><img src="./meme/mevoy.gif" width="30px"><img src="./meme/monstruito.gif" width="30px"><img src="./meme/mother.gif" width="30px"><img src="./meme/ninja.gif" width="30px"><img src="./meme/no-me-gusta.png" width="30px"><img src="./meme/no-se.gif" width="30px"><img src="./meme/no.gif" width="30px"><img src="./meme/not-bad.gif" width="30px"><img src="./meme/okay.gif" width="30px"><img src="./meme/pensando.gif" width="30px"><img src="./meme/pokerfa.gif" width="30px"><img src="./meme/que-onda-2.png" width="30px"><img src="./meme/see.gif" width="30px"><img src="./meme/Siclaro.gif" width="30px"><img src="./meme/suspi.gif" width="30px"><img src="./meme/tegarco.png" width="30px"><img src="./meme/tierno.gif" width="30px"><img src="./meme/tramando.gif" width="30px"><img src="./meme/troll.gif" width="30px"><img src="./meme/trolldad.gif" width="30px"><img src="./meme/trollface_sad.gif" width="30px"><img src="./meme/true history.png" width="30px"><img src="./meme/what.jpg" width="30px"><img src="./meme/why.gif" width="30px"><img src="./meme/whywithhands.gif" width="30px"><img src="./meme/Wtf.gif" width="30px"><img src="./meme/yao_asombrado.gif" width="30px"><img src="./meme/you-don-t-say-meme.gif" width="30px">
+<img src="./meme/cuidado.jpg" width="30px"> 
+
+        
+<img src="./ojos/abajo-derecha-azul.png" width="30px"><img src="./ojos/abajo-derecha-marron.png" width="30px"><img src="./ojos/abajo-derecha-verde.png" width="30px"><img src="./ojos/abajo-izquierda-azul.png" width="30px"><img src="./ojos/abajo-izquierda-marron.png" width="30px"><img src="./ojos/abajo-izquierda-verde.png" width="30px"><img src="./ojos/arriba-derecha-azul.png" width="30px"><img src="./ojos/arriba-derecha-marron.png" width="30px"><img src="./ojos/arriba-derecha-verde.png" width="30px"><img src="./ojos/arriba-izquierda-azul.png" width="30px"><img src="./ojos/arriba-izquierda-marron.png" width="30px"><img src="./ojos/arriba-izquierda-verde.png" width="30px"><img src="./ojos/blanco-adelante-azul.png" width="30px"><img src="./ojos/blanco-adelante-marron.png" width="30px"><img src="./ojos/blanco-adelante-verde.png" width="30px"><img src="./ojos/centro-azul.png" width="30px"><img src="./ojos/centro-derecha-azul.png" width="30px"><img src="./ojos/centro-derecha-marron.png" width="30px"><img src="./ojos/centro-derecha-verde.png" width="30px"><img src="./ojos/centro-izquierda-azul.png" width="30px"><img src="./ojos/centro-izquierda-marron.png" width="30px"><img src="./ojos/centro-izquierda-verde.png" width="30px"><img src="./ojos/centro-marron.png" width="30px"><img src="./ojos/centro-verde.png" width="30px">
+
+</div> -->
+        </div></center>
+    </div>
+    
+    <center><div id="liveHelp"></div></center>
+	<center><div id="screen"></div></center>
+    <center><div id="liveHelp1"></div></center>
+    
+       
+
+    
+    <center><div id="timer" style="width: 300px; height:5px; background-color: gray; margin-top: 10px;"><div id="timerAdentro" style="width: 100%; height: 5px; background-color: blue; float: left;"></div></div></center>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
+    <div id="preload" style="margin-top: 100px; filter:alpha(opacity=1); opacity:0.01;"></div>
+    <div id="footer">
+
+        <input type="button" name="btn-z-nm" value="Z" style="width: 50%; height: 100px;" id="btn-z-id">
+        <input type="button" name="btn-x-nm" value="X" style="width: 50%; height: 100px; float: right;" id="btn-x-id" align="left">
+
+    </div>
+    <div  style="display:none;" id="palabras1">PERRO CASA HIPOPOTAMO ELEFANTE LEON CIGUEÑA RELOJ CALENDARIO JIRAFA CABALLO GATO IMPRESORA TELEVISOR RADIO MESA SILLA SILLON TABURETE PLANTERA FLOR AUTOMOVIL CAMION TRACTOR BICICLETA IGLESIA SANDIA BANANA OLLA SARTEN TENEDOR GUSANO CUCHILLO PALA CARRETILLA SOMBRERO BARCO BOTE SOL LUNA NAIPES ANILLO BOTELLA TELEFONO CORTINA VENTANA PUERTA SOMBRILLA JABON ESPEJO BALDOSA ANZUELO PEZ RANA SAPO MANDARINA NARANJA MANGO DESTORNILLADOR BOLIGRAFO LAPIZ BORRADOR PIZARRON ALCANCIA BOTA SANDALIA PANTALON CAMISA POLLERA BONETE PANDORGA TROMPO PELOTA HAMACA TERMO BOMBILLA ARROZ FIDEO PILETA TRAMPOLIN SALVAVIDAS ACEITE ENCHUFE PLAYA PARLANTE CORBATA DIARIO REVISTA DISCO CHIMENEA MEDIA GUANTE ABEJA MOSCA MOSQUITO DESODORANTE BOTON CUADERNO LIBRO CARTUCHERA PISTOLA RIFLE FLECHA GALLETA MANTECA PELUCA LENGUA OIDO OJO DIENTE AJO CEBOLLA LECHUGA HELADERA SALCHICHA REJAS ALMOHADA SABANA COLCHON CUADRO SERRUCHO TOMATE PIEDRA POLLO CARRETA BURRO VACA LECHUZA GALLO SERPIENTE PUENTE LATIGO PALACIO CANASTO TIJERA ROPERO LENTES LARGAVISTA RATON PASTILLA CORTAPLUMAS BASURERO POLICIA LAGARTIJA DINOSAURIO AVION ESTRELLA COMETA TALADRO CASCO POMADA SECADOR DE PELO PICO LORO MARTILLO CLAVO LICUADORA PORTON LLAVERO LLAVE PINCEL CABELLO VOLANTE MOTOR MAR RIO MONTAÑA ESTANTE EMBUDO GARRAFA HIELO SIFON VINO WHISKY LECHE SOPA AZUCAR LINTERNA TREN MADERA CANAS CHAMPU ARO BILLETERA ESTATUA ANCLA CAÑON PAVA CACEROLA HILO AGUJA ALFOMBRA CARNAVAL PRIMAVERA INVIERNO VERANO MAPA SANTO TORRE ABRELATAS FUSIL TANQUE NUBE MICROBIO MICROSCOPIO TELESCOPIO BISTURI PIANO GUITARRA VIOLIN FLAUTA TAMBOR RUEDA CADENA RINOCERONTE TIGRE AVESTRUZ TEJADO BRUJULA BRUJA ESCOBA DRAGON PARACAIDAS MASTIL POZO CANCION TEATRO CINE FOCO PALMERA COCO MARMOL JAZMIN ROSA ALAMBRE CEPILLO COLLAR CARPETA MOCHILA PARAGUAS LADRILLO FAROL PIRAMIDE ALARMA VIDRIO VENTILADOR VIENTO PULPO BALLENA TIBURON SACACORCHOS LAMPARA UVA DURAZNO LADRON PERIODISTA DOCTOR ABOGADO ALGODON CINTO BIDON ANTENA PERFORADORA CASINO COMPUTADORA DELFIN PANDERETA MICROFONO CANTANTE FARO QUESO JAMON MAYONESA CHICLE CARAMELO CIGARRILLO LAVARROPAS GRIFO CALCULADORA SIRENA CIRCO GLOBO CIGARRO CIGARRA BIBLIA TALCO PAÑAL JERINGA CAFE CARDENAL CARPINTERO DUCHA MANGUERA GORRION PINO CARTEL CAJON CESPED VEREDA COMPAS SACAPUNTAS CHEQUERA PARRILLA GIMNASIO CARBON FOSFORO ENCENDEDOR ANTORCHA SALERO GASOLINA PARLAMENTO TRANVIA CARACOL ARENA FUENTE CAMISON COSECHADORA ARADO BUEY AVIONETA COHETE PLATILLO ESPADA ESCUDO LANZA ARMADURA PANTANO PRADERA BOSQUE DESIERTO YOGURT CHUPETIN CHUPETE MAMADERA CUNA PESEBRE ESTETOSCOPIO DEMOCRACIA COMUNISMO FUTBOL TENIS RUGBY LANCHA ROMPEHIELOS BATERIA ACIDO DENTRIFICO PERFUME SOLDADOR CAPITAN GENERAL SOLDADO PRESIDENTE DIPUTADO ESTANQUE POLEA JABALI SUBMARINO CHEQUE BAÑERA TRENZAS BOLETO TINTA CORTAUÑAS ARAÑA MAIZ SERVILLETA CANDELABRO TUERCA TENAZA BUJIA PARACHOQUES MORSA FOCA PINGUINO ORCA GAVIOTA OMBLIGO VELADOR TOLDO SEÑALADOR LANGOSTA RUINAS BANCO SUPERMERCADO VERDULERIA SEMAFORO RAYO TRUENO TIFON LLUVIA GRANIZO NIEVE CHOCOLATE VAINILLA CANELA VENADO PANTERA VAMPIRO MURCIELAGO LAGO ESTERO AUTORADIO PANTUFLAS EUCALIPTO CANAL SEMILLA FANTASMA ARCO RED ARBITRO JUGADOR PUBLICO CORONA CRUZ ESPINA CHORIZO ESTACA MILANESA BODA NOVIO VIDEOCASETERA CAMARA HEBILLA TIMON MUELLE HORNO EXAMEN BALANZA FOGATA LEÑA NAFTA BALA MISIL BERRUGA PAYASO TRAPECISTA TORPEDO ESCLAVO NUDO ESPOSAS UNIFORME INSIGNIA TATUAJE TERMOMETRO QUITAESMALTE VELO VELA SANTUARIO LEVADURA CELULA MUSCULO HUESO MEDULA SANGRE GRANO ARTERIA PELO UÑA ESCAMAS PICAZON TALON CODO RODILLA ESPALDA CUELLO CABEZA HOMBRO COSTILLA PUÑO PALMA PIERNA BRAZO ESTOMAGO INTESTINO HIGADO RIÑON VEGIGA COLUMNA CRANEO PIRATA CABRA DULCE AJEDREZ REINA REY PRINCIPE PRINCESA DUENDE MAGO ALBONDIGA PULSERA CUCHARA PASTOR OVEJA LOCO REGLA CANTIMPLORA FIEBRE MUELA ORO PLATA COBRE BRONCE TECLADO TOPO LAVANDINA BODOQUE DATIL REACTOR</div>
+  
+    <!-- modal content -->
+        <div id="basic-modal-content">
+          
+        </div>
+
+        <!-- preload the images -->
+        <div style='display:none'>
+            <img src='img/basic/x.png' alt='' />
+       </div>
+
+    <script type="text/javascript">
+
+         function graficar(){
+            
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx).Line(window.lineChartData, {
+                responsive: true,
+                barValueSpacing : 5,
+               barDatasetSpacing : 1,
+               tooltipFillColor: "rgba(0,0,0,0.8)",                
+               multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
+            });
+
+        }
+        function pow(x,y){
+
+            return Math.pow(x, y);
+        }
+   
+
+    function createMaze()
+    {
+        
+        var w = document.getElementById("width").value;
+        var h = document.getElementById("height").value;
+        var level = $('input[name=level]:checked', '#myForm1').val();
+
+        /*
+        for(var i = 0; i < document.controls.level.length; i++)
+        {
+            if(document.controls.level[i].checked == true)
+                level = document.controls.level[i].value;
+        }
+
+        if(w * h > 12000) // arbitrary number
+            if (confirm("Esto puede llevar un tiempo, ¿estás seguro de que quieres hacer Un laberinto tan grande ?") == false)
+                return;
+        */
+
+        var canvas = document.getElementById("canvas");
+
+        theMaze = new Maze(canvas, w, h, level);
+        theMaze.draw();
+    }
+    </script>
+
+</body>
+</html>

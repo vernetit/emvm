@@ -1,0 +1,32 @@
+corregir memoria
+corregir multiplicacion
+agregar repetidos
+check mode multiplicacion
+modificar casilleros y pao
+
+tamaño imagenes emoLogic
+
+-moz-transform: scale(2);
+
+	
+http://www.proverbia.net/citasautor.asp?autor=270
+
+que se preselecciones un ejercicio
+
+colores
+	lectura rapida
+	random colors
+	cargar libro
+
+
+google translate api u otra
+
+get url
+	$(location).attr('href');
+
+	https://www.youtube.com/watch?v=AfFCteonBrM
+
+
+	
+
+

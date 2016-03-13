@@ -1,0 +1,44 @@
+corregir resultados memoria
+corregir suma
+silogismo de 2 
+
+agregar repetidos en memoria
+
+ejercicios fisicos (malabares y rubik)
+modificar casilleros y pao
+guardar configuracion
+memorizar acordes
+tamaño letra memoria rapida
+lectura rapida de rss
+
+
+
+corregir multiplicacion ... ok
+
+
+
+tamaño imagenes emoLogic
+-moz-transform: scale(2);
+
+	
+http://www.proverbia.net/citasautor.asp?autor=270
+
+que se preselecciones un ejercicio
+
+colores
+	lectura rapida
+	random colors
+	cargar libro
+
+
+google translate api u otra
+
+get url
+	$(location).attr('href');
+
+	https://www.youtube.com/watch?v=AfFCteonBrM
+
+
+	
+
+

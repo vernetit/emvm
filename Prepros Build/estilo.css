@@ -1,0 +1,149 @@
+.emo-img
+{
+    width: 70px;
+    height: 90px;
+}
+
+.emoji-img
+{
+    width: 32px;
+    height: 32px;
+}
+
+.meme-img
+{
+    width: 64px;
+    height: 64px;
+}
+
+.modal
+{
+    overflow: hidden;
+}
+.modal-dialog{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+
+.wrapper {
+    /* width:100% */
+}
+.container {
+
+    margin:0 auto;
+    height:500px;
+     /* 
+       width:300px;
+     background:#ccc; */
+}
+.element {
+   /* background:#f2f2f2; */
+    position: absolute; 
+    margin-left: 0px;
+  
+  
+   /* 
+    position:fixed;
+      width:10px;
+    height:10px;
+    */
+
+    /*
+    
+
+    
+     border:0px solid #d6d6d6; */
+}
+
+ #footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+ #output1 div {
+    float: left;
+    height: 20px;
+    width: 14px;
+    margin-bottom: 10px;
+    margin: 10px 0 10px 0;
+
+    }
+
+
+	.up {
+    width: 0px;
+    height: 0px;
+    border-style: inset;
+    border-width: 0 100px 173.2px 100px;
+    border-color: transparent transparent #007bff transparent;
+    
+    transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    }
+
+    .up p {
+        text-align: center;
+        top: 80px;
+        left: -47px;
+        position: relative;
+        width: 93px;
+        height: 93px;
+        margin: 0px;
+        font-size: 20px;
+    }
+
+    .circle
+        {
+        width:250px;
+        height:250px;
+        border-radius:125px;
+        font-size:20px;
+        color:#fff;
+        line-height:250px;
+        text-align:center;
+        background:#000
+        }
+
+    input[type=checkbox]
+    {
+      /* Double-sized Checkboxes */
+      -ms-transform: scale(0.75); /* IE */
+      -moz-transform: scale(0.75); /* FF */
+      -webkit-transform: scale(0.75); /* Safari and Chrome */
+      -o-transform: scale(0.75); /* Opera */
+      padding: 10px;
+    }
+
+    .lm{
+        color: #000000; text-decoration: underline;
+
+    }
+
+    /*o.v.*/
+
+    .image-dropdown {
+        /*style the "box" in its minimzed state*/
+        border:1px solid black; width:240px; height:50px; overflow:hidden;
+        /*animate collapsing the dropdown from open to closed state (v. fast)*/
+        -moz-transition: height 0.1s; 
+        -webkit-transition: height 0.1s; 
+        -ms-transition: height 0.1s;  
+        -o-transition: height 0.1s;  
+        transition: height 0.1s;
+    }
+    .image-dropdown:hover {
+        /*when expanded, the dropdown will get native means of scrolling*/
+        height:250px; overflow-y:scroll;
+        /*nice and smooth expand - speed this up at your preference or remove animation altogether*/
+        -moz-transition: height 0.5s; 
+        -webkit-transition: height 0.5s; 
+        -ms-transition: height 0.5s;  
+        -o-transition: height 0.5s;  
+        transition: height 0.5s;
+    }
+   
